@@ -37,7 +37,7 @@ class BooksListing extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () => toggleTheme(),
-            icon: const Icon(Icons.all_inclusive),
+            icon: const Icon(Icons.brightness_medium),
           ),
         ],
       ),
