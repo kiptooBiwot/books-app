@@ -19,7 +19,8 @@ class BooksListing extends StatelessWidget {
     ];
   }
 
-  const BooksListing({Key? key}) : super(key: key);
+  final Function toggleTheme;
+  const BooksListing(this.toggleTheme, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,63 +34,73 @@ class BooksListing extends StatelessWidget {
         ),
         centerTitle: true,
         leading: const Icon(Icons.home),
-        // elevation: 1.0,
+        actions: [
+          IconButton(
+            onPressed: () => toggleTheme(),
+            icon: const Icon(Icons.all_inclusive),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      body: ListView.builder(
-        itemCount: booksListing.isEmpty ? 0 : booksListing.length,
-        itemBuilder: (context, index) {
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            elevation: 5.0,
-            margin: const EdgeInsets.all(10.0),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          booksListing[index]['title'],
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'NanumGothic',
-                          ),
-                        ),
-                        const SizedBox(height: 5.0),
-                        booksListing[index]['authors'] != null
-                            ? Text(
-                                'Author(s): ${booksListing[index]['authors'].join(", ")}',
-                                style: const TextStyle(
-                                  fontSize: 15.0,
-                                  color: Colors.grey,
-                                  fontFamily: 'NanumGothic',
-                                ),
-                              )
-                            : const Text(''),
-                      ],
-                    ),
-                  ),
-                  booksListing[index]['coverImage'] != null
-                      ? Image.network(
-                          booksListing[index]['coverImage'],
-                          fit: BoxFit.fill,
-                        )
-                      : Container(),
-                ],
+      body: Theme(
+        data: ThemeData(
+          cardColor: Colors.orange[50],
+        ),
+        child: ListView.builder(
+          itemCount: booksListing.isEmpty ? 0 : booksListing.length,
+          itemBuilder: (context, index) {
+            return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-            ),
-          );
-        },
+              elevation: 5.0,
+              margin: const EdgeInsets.all(10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            booksListing[index]['title'],
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'NanumGothic',
+                            ),
+                          ),
+                          const SizedBox(height: 5.0),
+                          booksListing[index]['authors'] != null
+                              ? Text(
+                                  'Author(s): ${booksListing[index]['authors'].join(", ")}',
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.grey,
+                                    fontFamily: 'NanumGothic',
+                                  ),
+                                )
+                              : const Text(''),
+                        ],
+                      ),
+                    ),
+                    booksListing[index]['coverImage'] != null
+                        ? Image.network(
+                            booksListing[index]['coverImage'],
+                            fit: BoxFit.fill,
+                          )
+                        : Container(),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

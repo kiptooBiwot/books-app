@@ -4,6 +4,7 @@ ThemeData get defaultTheme => ThemeData(
       brightness: Brightness.light,
       primaryColor: Colors.blue,
       accentColor: Colors.lightBlueAccent,
+      fontFamily: 'NanumGothic',
       appBarTheme: const AppBarTheme(
         color: Colors.blue,
         iconTheme: IconThemeData(
@@ -15,17 +16,13 @@ ThemeData get defaultTheme => ThemeData(
 ThemeData get lightTheme => ThemeData(
       brightness: Brightness.light,
       primarySwatch: Colors.blueGrey,
+      fontFamily: 'NanumGothic',
       accentColor: Colors.blueGrey[400],
     );
 
 ThemeData get darkTheme => ThemeData(
       brightness: Brightness.dark,
-      primarySwatch: Colors.orange,
+      primarySwatch: Colors.amber,
+      fontFamily: 'NanumGothic',
       accentColor: Colors.yellowAccent,
-    );
-
-ThemeData get appTextTheme => ThemeData(
-      textTheme: const TextTheme(
-        headline6: TextStyle(fontFamily: 'NanumGothic'),
-      ),
     );
